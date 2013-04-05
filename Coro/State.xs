@@ -2350,7 +2350,7 @@ coro_rouse_callback (pTHX_ CV *cv)
   dXSARGS;
   SV *data = (SV *)S_GENSUB_ARG;
 
-  if (SvTYPE (SvRV (data)) != SVt_PVAV)
+  if (PL_phase != PERL_PHASE_DESTRUCT && SvTYPE (SvRV (data)) != SVt_PVAV)
     {
       /* first call, set args */
       SV *coro = SvRV (data);
